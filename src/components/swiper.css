@@ -1,0 +1,7 @@
+.swiper-wrapper{
+    display: flex;
+}
+
+.swiper-container{
+    height: 350px;
+}
