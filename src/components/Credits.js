@@ -15,7 +15,6 @@ const CreditsContetns = styled.div`
 
 function Credits({creditList}) {
 
-    console.log(creditList)
     return (
         
         <>

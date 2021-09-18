@@ -1,5 +1,5 @@
 
-import {ADD,PLAYINGADD,SELECTED,CREDIT, UPCOMING, VIDEO,TOP,DETAILED} from '../_action/types';
+import {ADD,PLAYINGADD,SELECTED,CREDIT, UPCOMING, VIDEO,TOP,DETAILED, KATEGORIE,VIDEOLISTS} from '../_action/types';
 
 
 const initalState = {
@@ -11,6 +11,12 @@ const initalState = {
   topLists: [],
   detailedMovie: {},
   creditLists : [],
+  kategorie : {
+    credits : true,
+    video : false,
+    comment : false,
+  },
+  videoLists : [],
 };
 
 const movieLists = (state = initalState, action) => {
@@ -55,6 +61,17 @@ const movieLists = (state = initalState, action) => {
         ...state,
         creditLists: action.creditLists
       };
+    case KATEGORIE:
+      return {
+        ...state,
+        kategorie : action.kategorie
+      }
+    case VIDEOLISTS:
+      return {
+        ...state,
+        videoLists : action.videoLists
+      }
+    
     // default를 쓰지 않으면 맨처음 state에 state값이 undefined가 나오게 돼서 default문을 넣어야 함
     default:
       return state;
