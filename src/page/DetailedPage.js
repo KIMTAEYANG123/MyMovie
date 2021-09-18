@@ -2,9 +2,12 @@ import React,{useState,useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import {  useParams } from 'react-router'
 import styled from 'styled-components'
-import { getCreditAPI, getDetailedAPI } from '../api/movieAPI'
+import { getCreditAPI, getDetailedAPI, getVideoAPI } from '../api/movieAPI'
 import Credits from '../components/Credits'
-import {addCredit} from '../_action/movie_actions';
+import Nav from '../components/Nav'
+import {addCredit , addVideoLists,selectKategorie} from '../_action/movie_actions';
+import Youtube from '../components/Youtube';
+import VideoLists from '../components/VideoLists'
 
 const Contents = styled.div`
 position: absolute;
@@ -63,45 +66,48 @@ const Button = styled.button`
     border: none;
     border-radius: 10px;
 `
-
-const Kategorie = styled.ul`
-    margin : 3rem 0 3rem 0;
-    color:white;
-    font-size: 20px;
+const VideoContents = styled.div`
     display: flex;
-    list-style: none;
+    flex-wrap: wrap;
 `
-const List = styled.li`
-    margin-left : 2rem;
-    border-bottom: ${p => p.credits ? '1px solid white' : p => p.video ? '1px solid white' :p => p.comment ? '1px solid white' :''};
-    cursor: pointer;
-`
+
 function DetailedPage() {
     
     const {id} = useParams();
     const [movie, setMovie] = useState();
     const [count,setCount] = useState(10);
     const {creditLists} = useSelector(state => state.movieLists)
-
-    const [kate,setKate] = useState({
-        credits : true,
-        video : false,
-        comment : false,
-    });
+    const {kategorie} =  useSelector(state => state.movieLists)
+    const {videoLists} =  useSelector(state => state.movieLists)
 
     const dispatch = useDispatch();
 
+
     useEffect(() => {
+        
+        const newKategorie = {
+            ...kategorie,
+            credits: true,
+            video : false,
+            comment : false
+        }
+        dispatch(selectKategorie(newKategorie))
+
        getDetailedAPI(id).then(res=>{
             setMovie(res.data)
        })
        getCreditAPI(id).then(res=>{
            dispatch(addCredit(res.data.cast))
        })
+       getVideoAPI(id).then(res=>{
+            dispatch(addVideoLists(res.data.results))
+       })
+
     }, [])
     
     const newCreditLists = creditLists.filter( (cL,i) => (i<count))
     const len = creditLists.length ; 
+    const newVideoLists = videoLists.filter((vL , i) =>(i>0))
 
     const onClickCount = (e)=>{
         e.preventDefault();
@@ -109,6 +115,8 @@ function DetailedPage() {
             setCount(s => s+10)
         }
     }
+
+
     return (
         <Main>
             <Baner>
@@ -128,18 +136,33 @@ function DetailedPage() {
                 {movie && <MovieImage bg={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}/>}
             </Baner>
 
-            <Kategorie>
-                <List credits={kate.credits} name='credits'>출연</List>
-                <List video={kate.video} name ='video'>영상/포토</List>
-                <List comment={kate.comment} name ='comment'>댓글</List>
-            </Kategorie>
+            <Nav />
 
-            <ImgContents>
-                {
-                    newCreditLists.map( creditList => (<Credits key={creditList.id} creditList={creditList}/>))
-                }
-            </ImgContents>
-            {movie && <Button onClick={onClickCount}>더 보기</Button>}
+            {
+            kategorie.credits && 
+            <>
+                <ImgContents>
+                    {
+                        newCreditLists.map( creditList => (<Credits key={creditList.id} creditList={creditList}/>))
+                    }
+                </ImgContents>
+                {movie && <Button onClick={onClickCount}>더 보기</Button>}
+            </>
+            }
+            {
+            kategorie.video && 
+                <>
+                {videoLists.length>0 && <Youtube videoMoive={videoLists[0]} height={`500px`}/> } 
+                <VideoContents>
+                    {newVideoLists && newVideoLists.map( (videoList ,i) => (
+                        <VideoLists 
+                            key={videoList.id}
+                            videoList={videoList}/> 
+                    ))}
+                </VideoContents>
+                </>
+            }
+            
         </Main>
     )
 }

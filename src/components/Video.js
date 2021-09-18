@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideoAPI ,getDetailedAPI} from '../api/movieAPI';
 import {addVideo,addDetailed} from '../_action/movie_actions';
+import Youtube from './Youtube';
 
 const SelectMovie = styled.div`
   background-image: url(${(props) => props.bg});
@@ -46,10 +47,8 @@ function Video() {
    const{detailedMovie} = useSelector(state => state.movieLists);
 
    const dispatch = useDispatch();
-
    useEffect(() => {
        getVideoAPI(selectMovie.id).then(res=>{
-           console.log(res.data)
             dispatch(addVideo(res.data.results[0]))
        })
 
@@ -58,14 +57,12 @@ function Video() {
         })
    }, [selectMovie.id])
 
-   console.log(detailedMovie)
+
     return (
         <VideoContents>
             
         {videoMoive && 
-            <iframe src={`https://www.youtube.com/embed/${videoMoive.key}?autoplay=1`} frameBorder="0" allow="autoplay" width="100%" height="400px"title ="youtube">
-                <p>현재 사용 중인 브라우저는 iframe 요소를 지원하지 않습니다!</p>
-            </iframe>
+            <Youtube videoMoive={videoMoive} height={'400px'}/>
         }
         {
          !videoMoive  &&  
