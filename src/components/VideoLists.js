@@ -14,6 +14,12 @@ const VideoImage = styled.div`
 const ViWeb = styled.div`
     display: flex;
     flex-direction: column;
+    
+`
+const Name = styled.span`
+    width:250px;
+    margin: 1rem 0 0 1rem;
+    color: white;
 `
 function VideoLists({videoList}) {
 
@@ -21,7 +27,7 @@ function VideoLists({videoList}) {
         <ViWeb>
             <VideoImage bg = {`https://i.ytimg.com/vi_webp/${videoList.key}/hqdefault.webp`}>
             </VideoImage> 
-            <span>{videoList.name}</span>
+            <Name>{videoList.name}</Name>
         </ViWeb>
     )
 }
