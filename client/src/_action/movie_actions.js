@@ -1,4 +1,4 @@
-import {ADD,PLAYINGADD,SELECTED,VIDEO,UPCOMING,TOP,DETAILED,CREDIT,KATEGORIE,VIDEOLISTS} from './types';
+import {ADD,PLAYINGADD,SELECTED,VIDEO,UPCOMING,TOP,DETAILED,CREDIT,KATEGORIE,VIDEOLISTS , LOGIN} from './types';
 
 
 export const addPopularLists = popularLists => ({ type: ADD, popularLists });
@@ -20,3 +20,6 @@ export const addDetailed = detailedMovie =>({type:DETAILED, detailedMovie})
 export const addCredit = creditLists =>({type:CREDIT, creditLists})
 
 export const selectKategorie = kategorie => ({type:KATEGORIE , kategorie});
+
+export const getLogin = login => ({type:LOGIN , login});
+
