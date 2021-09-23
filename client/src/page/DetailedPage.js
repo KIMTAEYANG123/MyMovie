@@ -8,6 +8,7 @@ import Nav from '../components/Nav'
 import {addCredit , addVideoLists,selectKategorie} from '../_action/movie_actions';
 import Youtube from '../components/Youtube';
 import VideoLists from '../components/VideoLists'
+import  Comment  from '../components/common/Comment'
 
 const Contents = styled.div`
 position: absolute;
@@ -161,6 +162,10 @@ function DetailedPage() {
                     ))}
                 </VideoContents>
                 </>
+            }
+            {
+            kategorie.comment && 
+               <Comment id={id}/>
             }
             
         </Main>

@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import MainPage from './page/MainPage';
 import DetailedPage from './page/DetailedPage';
+import Header from './components/common/Header';
+import LoginPage from './components/LoginPage';
 
 function App() {
 
@@ -14,10 +16,11 @@ function App() {
   }, [])
   return (
     <Router>
+      <Header />
       <Switch>
         <Route exact path="/" component={MainPage}/>
         <Route exact path="/movie/:id" component={DetailedPage}/>
-
+        <Route exact path="/login" component={LoginPage}/>
       </Switch>
     </Router>
   );
