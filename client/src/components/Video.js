@@ -15,9 +15,8 @@ const SelectMovie = styled.div`
 `
 const VideoContents =styled.div`
     display: flex;
-
     position: sticky;
-    z-index: 3;
+    z-index: 4;
     top:0px;
 `
 const MovieImage = styled.div`

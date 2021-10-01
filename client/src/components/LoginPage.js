@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {getLogin} from '../_action/movie_actions';
 
 const Main = styled.div`
     display: flex;
@@ -30,6 +32,8 @@ const Button =styled.button`
 `
 function LoginPage() {
     const history = useHistory()
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     
@@ -55,6 +59,7 @@ function LoginPage() {
 
         const {data} = await axios.post('/api/login', body);
         if(data.loginSuccess){
+            dispatch(getLogin(true))
             history.push('/')
         }else{
             console.log('ㅎㅇ')

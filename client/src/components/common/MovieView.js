@@ -1,7 +1,6 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {getDetailedAPI,getVideoAPI} from '../../api/movieAPI';
 import {  useDispatch } from "react-redux";
 import {selectLists} from '../../_action/movie_actions';
 
@@ -12,6 +11,12 @@ const Title = styled.h1`
     text-align: center;
     font-size: 14px;
     color: white;
+    display: block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    width:300px;
+
 `
 
 const Overview  = styled.span`
@@ -70,6 +75,7 @@ const Button = styled.button`
 `
 const Movie = styled.div`
     display: flex;
+    margin-left:1rem;
     position: relative;
     flex-direction: column;
     align-items: center;
@@ -85,11 +91,6 @@ function MovieView({list,idx}) {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {   
-         getDetailedAPI(list.id).then(res =>{
-            
-         })
-    }, [])
 
 
     return (

@@ -19,3 +19,5 @@ export const CREDIT = 'MOVIE/CREDIT';
 export const KATEGORIE = 'MOVIE/KATEGORIE';
 
 export const LOGIN = 'LOGIN';
+
+export const SEARCH = 'SEARCH/SEARCH';
