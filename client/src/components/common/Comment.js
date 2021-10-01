@@ -73,7 +73,7 @@ function Comment({id}) {
                 <Button onClick={onAddToComment}>등록</Button>
             </Modal>
 
-            { comments && comments.map( comment => (<CommentLists comment={comment}/>))}
+            { comments && comments.map( (comment,i) => (<CommentLists key={i}comment={comment}/>))}
         </Comments>
     )
 }

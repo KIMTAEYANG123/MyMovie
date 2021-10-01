@@ -91,6 +91,9 @@ app.post('/api/movie/addToComment', (req,res) => {
     const comments = new Comments(req.body)
     
     comments.save((err,doc)=>{
+        console.log(err);
+        console.log(doc);
+
         if(err) return res.status(400).send(err);
         return res.status(200).json({success:true,result:doc})
     })

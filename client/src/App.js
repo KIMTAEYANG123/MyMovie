@@ -8,6 +8,7 @@ import MainPage from './page/MainPage';
 import DetailedPage from './page/DetailedPage';
 import Header from './components/common/Header';
 import LoginPage from './components/LoginPage';
+import SearchPage from './page/SearchPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={MainPage}/>
+        <Route exact path="/search-movie/:name" component={SearchPage}/>
         <Route exact path="/movie/:id" component={DetailedPage}/>
         <Route exact path="/login" component={LoginPage}/>
       </Switch>
