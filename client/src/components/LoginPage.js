@@ -36,7 +36,7 @@ function LoginPage() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    
+    const [error ,setError] =useState('');
     const onChangeHandler = (e)=>{
         const {
             target : {name}
@@ -62,7 +62,7 @@ function LoginPage() {
             dispatch(getLogin(true))
             history.push('/')
         }else{
-            console.log('ㅎㅇ')
+            setError('아이디를 찾을 수 없습니다.')
         }
 
     }
@@ -75,6 +75,9 @@ function LoginPage() {
                 <label>비밀번호</label>
                 <Input type='password' name='password' value={password} onChange={onChangeHandler} placeholder='비밀번호를 입력하세요'/>
                 <Button type='submit'>로그인</Button>
+                {error && 
+                    <span>{error}</span>
+                }
             </Form>
         </Main>
     )
