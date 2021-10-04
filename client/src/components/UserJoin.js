@@ -59,11 +59,7 @@ function UserJoin() {
 
                     <label>비밀번호 확인</label>
                     <Input type='password' name='passwordCheck' onChange={onChange} value={passwordCheck}/>
-<<<<<<< HEAD
-                    <Button>회원가입</Button>?
-=======
                     <Button>회원가입</Button>
->>>>>>> 3034a919adf67b4fbf3b8084e816080972b26dc2
                 </Main>
             </JoinContents>
         </div>
