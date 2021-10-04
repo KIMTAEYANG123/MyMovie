@@ -59,7 +59,7 @@ function UserJoin() {
 
                     <label>비밀번호 확인</label>
                     <Input type='password' name='passwordCheck' onChange={onChange} value={passwordCheck}/>
-                    <Button>회원가입</Button>
+                    <Button>회원가입</Button>?
                 </Main>
             </JoinContents>
         </div>
