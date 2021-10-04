@@ -9,6 +9,7 @@ import DetailedPage from './page/DetailedPage';
 import Header from './components/common/Header';
 import LoginPage from './components/LoginPage';
 import SearchPage from './page/SearchPage';
+import UserJoin from './components/UserJoin';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/search-movie/:name" component={SearchPage}/>
         <Route exact path="/movie/:id" component={DetailedPage}/>
         <Route exact path="/login" component={LoginPage}/>
+        <Route exact path="/join" component={UserJoin}/>
       </Switch>
     </Router>
   );
