@@ -46,6 +46,7 @@ function Comment({id}) {
     useEffect(() => {
         axios.post('/api/movie/getComments',body).then(res=>{
             setComments(res.data.comments)
+            console.log(res.data.comments)
         }).catch(err =>{
             console.log(err)
         })
@@ -60,11 +61,16 @@ function Comment({id}) {
 
     const onAddToComment = async(e)=>{
         e.preventDefault();
-        const data = await axios.post('/api/movie/addToComment', body);
-        console.log(data)
 
+        const data = await axios.post('/api/movie/addToComment', body);
+
+        axios.post('/api/movie/getComments',body).then(res=>{
+            setComments(res.data.comments)
+        }).catch(err =>{
+            console.log(err)
+        })
+        setstate('');
     }
-    console.log(auth)
 
     return (
         <Comments>
