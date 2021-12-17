@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_API_KEY; 
 
-
+console.log(apiKey)
 export const getPopularAPI = async()=>{
     const data = await axios.get(`${movieURL}popular?api_key=${apiKey}&language=ko&page=1&region=KR`);
     return data;

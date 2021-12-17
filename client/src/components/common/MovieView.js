@@ -22,7 +22,9 @@ const Title = styled.h1`
 const Overview  = styled.span`
     font-size: 11px;
     color: white;
+    height: 168px;
     margin-bottom: auto;
+    overflow: hidden;
     
 `
 const Contents = styled.div`

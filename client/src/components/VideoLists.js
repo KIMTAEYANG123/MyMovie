@@ -21,11 +21,15 @@ const Name = styled.span`
     margin: 1rem 0 0 1rem;
     color: white;
 `
-function VideoLists({videoList}) {
+function VideoLists({videoList, index,setSelect}) {
 
+    console.log(index)
+    const onSelect = (index)=>{
+        setSelect(index)
+    }
     return (
         <ViWeb>
-            <VideoImage bg = {`https://i.ytimg.com/vi_webp/${videoList.key}/hqdefault.webp`}>
+            <VideoImage bg = {`https://i.ytimg.com/vi_webp/${videoList.key}/hqdefault.webp`} onClick={()=> {onSelect(index)}}>
             </VideoImage> 
             <Name>{videoList.name}</Name>
         </ViWeb>

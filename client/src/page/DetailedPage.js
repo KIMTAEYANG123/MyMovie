@@ -77,13 +77,14 @@ function DetailedPage() {
     const {id} = useParams();
     const [movie, setMovie] = useState();
     const [count,setCount] = useState(10);
+    const [select , setSelect] = useState(0);
     const {creditLists} = useSelector(state => state.movieLists)
     const {kategorie} =  useSelector(state => state.movieLists)
     const {videoLists} =  useSelector(state => state.movieLists)
 
     const dispatch = useDispatch();
 
-
+    console.log(select)
     useEffect(() => {
         
         const newKategorie = {
@@ -116,7 +117,6 @@ function DetailedPage() {
             setCount(s => s+10)
         }
     }
-
 
     return (
         <Main>
@@ -153,11 +153,13 @@ function DetailedPage() {
             {
             kategorie.video && 
                 <>
-                {videoLists.length>0 && <Youtube videoMoive={videoLists[0]} height={`500px`}/> } 
+                {videoLists.length>0 && <Youtube videoMoive={videoLists[select]} height={`500px`}/> } 
                 <VideoContents>
                     {newVideoLists && newVideoLists.map( (videoList ,i) => (
                         <VideoLists 
                             key={videoList.id}
+                            setSelect = {setSelect}
+                            index = {i}
                             videoList={videoList}/> 
                     ))}
                 </VideoContents>
